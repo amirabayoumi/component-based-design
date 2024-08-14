@@ -1,0 +1,11 @@
+{
+  "name": "component-based-design",
+  "version": "1.0.0",
+  "description": "Learn to design, plan and build frontend applications using a Component-Based approach. You will explore the ReactJS library which is designed to make Component-Based design easy and efficient.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

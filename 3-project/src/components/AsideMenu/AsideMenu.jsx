@@ -1,17 +1,25 @@
-import { getIdFromUrl } from '../../utils';
+import { getIdFromUrl } from "../../utils";
+import { Link } from "react-router-dom";
 
-import './AsideMenu.styles.css';
+import "./AsideMenu.styles.css";
 
-export const AsideMenu = ({ list, onIdSelected }) => (
-  <aside className='aside'>
-    <ul>
-      {list.map((item) => (
-        <li key={item.url}>
-          <button onClick={() => onIdSelected(getIdFromUrl(item.url))}>
-            {item.name}
-          </button>
-        </li>
-      ))}
-    </ul>
-  </aside>
+export const AsideMenu = ({ list}) => (
+  <div className="aside-container">
+    <aside className="aside">
+      <div className="grid-container">
+        {list.map((item) => {
+          const id = getIdFromUrl(item.url);
+          return (
+            <div>
+              <div key={item.url} className="grid-item">
+                <Link to={`/pokemon/${id}`}>
+                  <button>{item.name}</button>
+                </Link>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </aside>
+  </div>
 );
