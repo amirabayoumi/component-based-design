@@ -1,7 +1,16 @@
-import { useErrorsContext } from '../../contexts';
+import { useErrorsContext } from '../../contexts/ErrorContext';
+
 
 export const Errors = () => {
   const { error } = useErrorsContext();
 
-  return <div className='errors-container'>{error}</div>;
+  if (!error) {
+    return null;
+  }else{
+    return <div className='errors-container'>{error}</div>;
+  }
+  
 };
+
+
+

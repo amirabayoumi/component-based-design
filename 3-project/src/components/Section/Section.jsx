@@ -1,24 +1,45 @@
-import { usePokemon } from '../../hooks';
+import { useParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import './Section.styles.css'
+import { useErrorsContext } from '../../contexts';
+import { ErrorCode, ErrorMessages } from '../../constants';
 
-import './Section.styles.css';
+export const Section = () => {
+  const { pokemonId } = useParams(); 
+  const [data, setData] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
+  const {setError}= useErrorsContext();
 
-export const Section = ({ selectedPokemonId }) => {
-  const { data, isLoading } = usePokemon(selectedPokemonId);
+  useEffect(() => {
+    const getPokemon = async () => {
+      try {
+        const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`);
+        if (!res.ok) {throw new Error(ErrorMessages[ErrorCode.FETCH_ERROR])};
+        const fetchData = await res.json();
+        setData(fetchData);
+      
+      } catch (error) {
+        setError(error.message);
+        setData(null);
+      } finally{
+        setIsLoading(false);
+      }
+    };
 
-  if (isLoading)
-    return (
-      <section className='section'>
-        <p>loading</p>
-      </section>
-    );
+    getPokemon();
+  }, [pokemonId, setError]);
 
-  if (!data) return null;
+  if (isLoading) return <p>Loading...</p>;
+  if (!data) return <p className='errM'>{ErrorMessages[ErrorCode.POKEMON_NOT_FOUND]}</p>;
 
   return (
-    <section className='section'>
-      Pokemon id: {selectedPokemonId}
-      Pokemon name: {data.name}
-      <img alt={data.name} src={data.sprites.front_default} />
-    </section>
+    <div className="pokemon-card">
+      <h1>{data.name}</h1>
+      <img className='pokImg' src={data.sprites.front_default} alt={data.name} />
+      <p className='pokType'>Type: {data.types.map(typeInfo => typeInfo.type.name).join(', ')}</p>
+      <p className='pokHeight'>Height: {data.height } m</p>
+      <p className='pokWeight'>Weight: {data.weight } kg</p>
+      <p className='pokAbilities'>Abilities: {data.abilities.map(abilityInfo => abilityInfo.ability.name).join(', ')}</p>
+    </div>
   );
 };

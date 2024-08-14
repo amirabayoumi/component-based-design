@@ -1,6 +1,71 @@
 .section {
   display: flex;
   justify-content: center;
+  align-items: center;
   border: 1px solid black;
   flex: 1;
+}
+.pokemon-card {
+  background-color: #e0e4c2;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 30px;
+  max-width: 400px;
+  margin: 30px auto;
+  text-align: center;
+  height: fit-content;
+}
+.pokImg {
+  width: 200px;
+  height: auto;
+  border-radius: 10px;
+  border: 2px solid #e0b8b8;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px;
+}
+
+.pokemon-card h1 {
+  font-size: 2em;
+  margin-bottom: 15px;
+  color: #ff0202;
+  height: auto;
+}
+.pokType {
+  font-size: 1.2em;
+  color: #7c1313;
+  margin-bottom: 15px;
+}
+
+.pokHeight,
+.pokWeight {
+  font-size: 1.2em;
+  color: #2850be;
+  margin-bottom: 15px;
+
+}
+
+.pokAbilities {
+  font-size: 1.1rem;
+  color: #e5ff00;
+  margin-top: 10px;
+  background-color: #5f3837;
+  padding: 8px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.errM {
+
+  color: #e74c3c;
+  background-color: #fff025;
+  padding: 10px 15px;
+  border-radius: 5px;
+  border: 1px solid #f5c6cb;
+  font-size: 16px;
+  text-align: center;
+  margin: 20px 0;
+  width: 80%;
+  height: 100px;
+  margin-left: auto;
+  margin-right: auto;
 }
